@@ -48,8 +48,9 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 	private String[] passives = {"Chickens: ", "Pigs: ", "Sheep: ", "Cows: ", "Horses: ", "Mooshrooms: ", "Rabbits: ", "Wolves: "};
 	private String[] hostiles = {"Zombies: ", "CaveSpiders: ", "Skeletons: ", "Spiders: ", 
 			"Creepers: ", "Witches: ", "Pigmen: ", "Slimes: ", "Guardians: "};
-
-
+// less priority missing mobs: Blaze, WitherSkeleton, Bat, villager, Enderman
+// high priority missing mobs: Stray, Donkey, Mule, Ocelot, Parrot, Llamma
+	
 	public LiteModMobCounter() {}
 
 	@Override
@@ -64,7 +65,7 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 	}
 
 	@Override
-	public String getVersion() { return "1.4.0"; }
+	public String getVersion() { return "1.5.0"; }
 
 	@Override
 	public void init(File configPath)
@@ -228,7 +229,7 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 	 */
 	private void displayPassiveCompact()
 	{
-		FontRenderer fontRender = Minecraft.getMinecraft().fontRendererObj;
+		FontRenderer fontRender = Minecraft.getMinecraft().fontRenderer;
 		this.getCounter().updateBB();
 		fontRender.drawStringWithShadow("Radius: " + this.getCounter().getRadius(), 5, 5, 0xFFAA00);
 		if (isStaff())
@@ -257,7 +258,7 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 	 */
 	private void displayPassiveExpanded()
 	{
-		FontRenderer fontRender = Minecraft.getMinecraft().fontRendererObj;
+		FontRenderer fontRender = Minecraft.getMinecraft().fontRenderer;
 		for (int i = 4; i < 8; i++)
 		{
 			int color = 0xFFFFFF;
@@ -283,7 +284,7 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 	 */
 	private void displayHostile()
 	{
-		FontRenderer fontRender = Minecraft.getMinecraft().fontRendererObj;
+		FontRenderer fontRender = Minecraft.getMinecraft().fontRenderer;
 		int offset = 5;
 		if (this.counterVisible > 0)
 			offset += 50;
