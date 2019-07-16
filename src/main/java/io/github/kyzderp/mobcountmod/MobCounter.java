@@ -10,16 +10,25 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.monster.EntityStray;
 import net.minecraft.entity.monster.EntityWitch;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityDonkey;
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.entity.passive.EntityMooshroom;
+import net.minecraft.entity.passive.EntityMule;
+import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntityParrot;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.EntityZombieHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 
@@ -53,25 +62,35 @@ public class MobCounter {
 		case 1: return minecraft.world.getEntitiesWithinAABB(EntityPig.class, boundingBox).size();
 		case 2: return minecraft.world.getEntitiesWithinAABB(EntitySheep.class, boundingBox).size();
 		case 3: return minecraft.world.getEntitiesWithinAABB(EntityCow.class, boundingBox).size() - this.countEntity(5);
-		case 4: return minecraft.world.getEntitiesWithinAABB(EntityHorse.class, boundingBox).size();
+		case 4: return minecraft.world.getEntitiesWithinAABB(EntityHorse.class, boundingBox).size() + this.countEntity(25) + this.countEntity(26)+ this.countEntity(27)+ this.countEntity(28);
 		case 5: return minecraft.world.getEntitiesWithinAABB(EntityMooshroom.class, boundingBox).size();
 		case 6: return minecraft.world.getEntitiesWithinAABB(EntityRabbit.class, boundingBox).size();
 		case 7: return minecraft.world.getEntitiesWithinAABB(EntityWolf.class, boundingBox).size();
+		case 8: return minecraft.world.getEntitiesWithinAABB(EntityLlama.class, boundingBox).size();
+		case 9: return minecraft.world.getEntitiesWithinAABB(EntityOcelot.class, boundingBox).size();
+		case 10: return minecraft.world.getEntitiesWithinAABB(EntityParrot.class, boundingBox).size();
 
-		case 8: return (minecraft.world.getEntitiesWithinAABB(EntityZombie.class, hostileBB).size() - this.countEntity(14));
-		case 9: return minecraft.world.getEntitiesWithinAABB(EntityCaveSpider.class, hostileBB).size();
-		case 10: return minecraft.world.getEntitiesWithinAABB(EntitySkeleton.class, hostileBB).size();
-		case 11: return (minecraft.world.getEntitiesWithinAABB(EntitySpider.class, hostileBB).size() - this.countEntity(9));
-		case 12: return minecraft.world.getEntitiesWithinAABB(EntityCreeper.class, hostileBB).size();
-		case 13: return minecraft.world.getEntitiesWithinAABB(EntityWitch.class, hostileBB).size();
-		case 14: return minecraft.world.getEntitiesWithinAABB(EntityPigZombie.class, hostileBB).size();
-		case 15: return minecraft.world.getEntitiesWithinAABB(EntitySlime.class, hostileBB).size();
-		case 16: return minecraft.world.getEntitiesWithinAABB(EntityGuardian.class, hostileBB).size();
+		case 11: return (minecraft.world.getEntitiesWithinAABB(EntityZombie.class, hostileBB).size() - this.countEntity(17));
+		case 12: return minecraft.world.getEntitiesWithinAABB(EntityCaveSpider.class, hostileBB).size();
+		case 13: return minecraft.world.getEntitiesWithinAABB(EntitySkeleton.class, hostileBB).size() + this.countEntity(23) + this.countEntity(24);
+		case 14: return (minecraft.world.getEntitiesWithinAABB(EntitySpider.class, hostileBB).size() - this.countEntity(12));
+		case 15: return minecraft.world.getEntitiesWithinAABB(EntityCreeper.class, hostileBB).size();
+		case 16: return minecraft.world.getEntitiesWithinAABB(EntityWitch.class, hostileBB).size();
+		case 17: return minecraft.world.getEntitiesWithinAABB(EntityPigZombie.class, hostileBB).size();
+		case 18: return minecraft.world.getEntitiesWithinAABB(EntitySlime.class, hostileBB).size();
+		case 19: return minecraft.world.getEntitiesWithinAABB(EntityGuardian.class, hostileBB).size();
 
-		case 17: return minecraft.world.getEntitiesWithinAABB(EntityIronGolem.class, boundingBox).size();
-		case 18: return minecraft.world.getEntitiesWithinAABB(EntitySnowman.class, boundingBox).size();
-		case 20: return minecraft.world.getEntitiesWithinAABB(EntityPlayer.class, boundingBox).size() - 1;
-
+		case 20: return minecraft.world.getEntitiesWithinAABB(EntityIronGolem.class, boundingBox).size();
+		case 21: return minecraft.world.getEntitiesWithinAABB(EntitySnowman.class, boundingBox).size();
+		case 22: return minecraft.world.getEntitiesWithinAABB(EntityPlayer.class, boundingBox).size() - 1;
+		
+		//mobs in additive in already existing mobs 
+		case 23: return minecraft.world.getEntitiesWithinAABB(EntityStray.class, boundingBox).size();
+		case 24: return minecraft.world.getEntitiesWithinAABB(EntityWitherSkeleton.class, boundingBox).size();
+		case 25: return minecraft.world.getEntitiesWithinAABB(EntityDonkey.class, boundingBox).size();
+		case 26: return minecraft.world.getEntitiesWithinAABB(EntityMule.class, boundingBox).size();
+		case 27: return minecraft.world.getEntitiesWithinAABB(EntityZombieHorse.class, boundingBox).size();
+		case 28: return minecraft.world.getEntitiesWithinAABB(EntitySkeletonHorse.class, boundingBox).size();
 		}
 		return 0;
 	}

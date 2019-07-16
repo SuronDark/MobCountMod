@@ -45,11 +45,11 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 	private int playSoundCount = 0; // counts up so sound plays once per sec
 	private int sendMsgCount = 0; // counts up so message sends every 5 minutes
 
-	private String[] passives = {"Chickens: ", "Pigs: ", "Sheep: ", "Cows: ", "Horses: ", "Mooshrooms: ", "Rabbits: ", "Wolves: "};
-	private String[] hostiles = {"Zombies: ", "CaveSpiders: ", "Skeletons: ", "Spiders: ", 
+	private final String[] passives = {"Chickens: ", "Pigs: ", "Sheep: ", "Cows: ", "Horses: ", 
+			"Mooshrooms: ", "Rabbits: ", "Wolves: ", "Llamas", "Ocelots", "Perrots"};
+	private final String[] hostiles = {"Zombies: ", "CaveSpiders: ", "Skeletons: ", "Spiders: ", 
 			"Creepers: ", "Witches: ", "Pigmen: ", "Slimes: ", "Guardians: "};
-// less priority missing mobs: Blaze, WitherSkeleton, Bat, villager, Enderman
-// high priority missing mobs: Stray, Donkey, Mule, Ocelot, Parrot, Llamma
+// less priority missing mobs: Blaze, Bat, villager, Enderman
 	
 	public LiteModMobCounter() {}
 
@@ -65,7 +65,7 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 	}
 
 	@Override
-	public String getVersion() { return "1.5.0"; }
+	public String getVersion() { return "1.6.0"; }
 
 	@Override
 	public void init(File configPath)
@@ -234,16 +234,16 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 		fontRender.drawStringWithShadow("Radius: " + this.getCounter().getRadius(), 5, 5, 0xFFAA00);
 		if (isStaff())
 		{
-			fontRender.drawStringWithShadow("Players: " + this.getCounter().countEntity(20), 65, 5, 0xFFFFFF);
+			fontRender.drawStringWithShadow("Players: " + this.getCounter().countEntity(22), 85, 5, 0xFFFFFF);
 			int color = 0xFFFFFF;
-			int count = this.getCounter().countEntity(18);
+			int count = this.getCounter().countEntity(21);
 			if (count > 16) color = 0xAA0000;
-			fontRender.drawStringWithShadow("Snowmen: " + count, 5, 55, color);
+			fontRender.drawStringWithShadow("Snowmen: " + count, 5, 75, color);
 		}
 		String toDisplay;
 
 		int color = 0xFFFFFF;
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 6; i++)
 		{
 			int count = this.getCounter().countEntity(i);
 			toDisplay = "" + count;
@@ -259,23 +259,23 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 	private void displayPassiveExpanded()
 	{
 		FontRenderer fontRender = Minecraft.getMinecraft().fontRenderer;
-		for (int i = 4; i < 8; i++)
+		for (int i = 6; i < 11; i++)
 		{
 			int color = 0xFFFFFF;
 			int count = this.getCounter().countEntity(i);
 			String toDisplay = "" + count;
 
 			if (count > 16) color = 0xAA0000;
-			fontRender.drawStringWithShadow(this.passives[i] + toDisplay, 75, i * 10 - 25, color);
+			fontRender.drawStringWithShadow(this.passives[i] + toDisplay, 85, i * 10 - 45, color);
 			color = 0xFFFFFF;
 		}
 		
 		if (LiteModMobCounter.isStaff())
 		{
 			int color = 0xFFFFFF;
-			int count = this.getCounter().countEntity(17);
+			int count = this.getCounter().countEntity(20);
 			if (count > 16) color = 0xAA0000;
-			fontRender.drawStringWithShadow("Golems: " + count, 75, 55, color);
+			fontRender.drawStringWithShadow("Golems: " + count, 85, 65, color);
 		}
 	}
 
@@ -287,7 +287,7 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 		FontRenderer fontRender = Minecraft.getMinecraft().fontRenderer;
 		int offset = 5;
 		if (this.counterVisible > 0)
-			offset += 50;
+			offset += 80;
 		if (LiteModMobCounter.isStaff())
 			offset += 10;
 
@@ -304,13 +304,13 @@ public class LiteModMobCounter implements Tickable, OutboundChatFilter
 		int totalCount = 0;
 		for (int i = 0; i < 5; i++)
 		{
-			int count = this.getCounter().countEntity(i + 8);
+			int count = this.getCounter().countEntity(i + 11);
 			totalCount += count;
 			fontRender.drawStringWithShadow(this.hostiles[i] + count, 5, i * 10 + 10 + offset, 0xFFFFFF);
 		}
 		for (int i = 5; i < 9; i++) 
 		{
-			int count = this.getCounter().countEntity(i + 8);
+			int count = this.getCounter().countEntity(i + 11);
 			totalCount += count;
 			if (this.hostileVisible > 1)
 				fontRender.drawStringWithShadow(this.hostiles[i] + count, 95, i * 10 - 40 + offset, 0xFFFFFF);
